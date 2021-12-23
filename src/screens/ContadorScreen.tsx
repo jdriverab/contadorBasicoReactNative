@@ -24,10 +24,26 @@ const ContadorScreen = () => {
 
                     <TouchableOpacity onPress={()=>setContador(contador+1)}>
                         <View style={{
-                            backgroundColor:"red",
-                            borderRadius: 100
+                            // flex: 1,
+                            alignSelf:"center",
+                            width: 130,
+                            height: 50,
+                            backgroundColor:"green",
+                            borderRadius: 50,
+                            borderColor: "red",
+                            // borderBottomEndRadius: 30, 
+                            borderWidth: 3,
+                            marginBottom: 10,
+                            borderStyle: ("dashed"),
+                            justifyContent:"center"
                         }}>
-                            <Text>+1</Text>
+                            <Text style={{
+                                fontSize: 20,
+                                textAlign:"center",
+                                textAlignVertical:"center"                
+                            }}>
+                                +1 Aloja
+                            </Text>
                         </View>
                     </TouchableOpacity>
 
