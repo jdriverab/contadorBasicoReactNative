@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, StyleSheet, TouchableNativeFeedback } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, TouchableNativeFeedback, Platform } from 'react-native';
 
 
 interface Props {
@@ -11,12 +11,13 @@ interface Props {
 }
 
 const BotonAccion = ({titleButton, value, onPress, position = "br"}:Props) => {
-    return (
-        // <TouchableOpacity style={[
-        <View style={[styles.fabLocation, (position === "bl" ? styles.left : styles.right)]}>
 
-            <TouchableNativeFeedback onPress={onPress} 
-            background={TouchableNativeFeedback.Ripple("#28425B",false, 30)}>
+    const ios = () =>{
+
+        return(
+
+            <TouchableOpacity onPress={onPress} activeOpacity={0.5} 
+            style={[styles.fabLocation, (position === "bl" ? styles.left : styles.right)]}>
 
                 <View style={styles.fab
                     // styles.button
@@ -27,8 +28,36 @@ const BotonAccion = ({titleButton, value, onPress, position = "br"}:Props) => {
                     </Text>
                 </View>
 
-            </TouchableNativeFeedback>
-        </View>
+            </TouchableOpacity>
+        )
+    }
+     
+    const android = () => {
+
+        return(
+
+            <View style={[styles.fabLocation, (position === "bl" ? styles.left : styles.right)]}>
+
+                <TouchableNativeFeedback onPress={onPress} 
+                background={TouchableNativeFeedback.Ripple("#28425B",false, 30)}>
+
+                    <View style={styles.fab
+                        // styles.button
+                    }>
+                        <Text style={styles.fabText
+                            // styles.textInButton
+                        }>{titleButton}
+                        </Text>
+                    </View>
+
+                </TouchableNativeFeedback>
+            </View>
+        )
+
+    }
+
+    return ( 
+        Platform.OS === "ios" ? ios() : android()
     )
 }
 
