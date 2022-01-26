@@ -9,8 +9,6 @@ interface Props extends StackScreenProps <any, any>{}
 
 const HomeScreen = ({navigation}:Props) => {
 
-    
-
   return (
         <View style={styles.globalMargin}>
             <Text style={styles.title}>
@@ -21,7 +19,19 @@ const HomeScreen = ({navigation}:Props) => {
             <Button title='ir Persona' onPress={()=> navigation.navigate('personaScreen')}/>
 
             <Text>Navegar con argumentos</Text>
-            <TouchableOpacity onPress={()=> navigation.navigate('personaScreen',{id:1, nombre:'Javi'})}><Text>Pedro</Text></TouchableOpacity>
+            
+            <View style={{flexDirection:'row'}}>
+
+                <TouchableOpacity style={{...styles.button, backgroundColor:'#5956D6'}} onPress={()=> 
+                navigation.navigate('personaScreen',{id:1, nombre:'Javi'})}>
+                    <Text style={styles.buttonText}>Dicen Javier</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={styles.button} onPress={()=> 
+                navigation.navigate('personaScreen',{id:2, nombre:'Maria'})}>
+                    <Text style={styles.buttonText}>Dijo Maria</Text> 
+                </TouchableOpacity>
+            </View>
         </View>
     );
 };
